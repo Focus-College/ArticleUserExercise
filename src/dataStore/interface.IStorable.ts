@@ -1,3 +1,5 @@
+import { IDataStore } from "./interface.IDataStore";
+
 export interface IStorable {
 
     save():void;

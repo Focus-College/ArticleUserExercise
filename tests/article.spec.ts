@@ -162,4 +162,8 @@ describe("Articles", () => {
 
     });
 
+    after(() => {
+        JsonDataStore.clear(`articles.json`);
+    });
+
 });
