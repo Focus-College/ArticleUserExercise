@@ -1,4 +1,4 @@
-import { hello } from "./hello";
+import { Article } from "./article/class.article";
 
-const message = hello();
-console.log(message);
+const article = new Article();
+article.save();
