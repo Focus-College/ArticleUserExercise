@@ -16,7 +16,7 @@ describe("Articles", () => {
 
         let id:string;
         
-        let data:Partial<IArticle> = {
+        const data:Partial<IArticle> = {
             isPaymentRequired: false,
             isMemberOnly: false,
             title: '',
@@ -100,7 +100,7 @@ describe("Articles", () => {
 
     describe('Director', () => {
 
-        let data:Partial<IArticle> = {
+        const data:Partial<IArticle> = {
             isPaymentRequired: false,
             isMemberOnly: false,
             title: '',

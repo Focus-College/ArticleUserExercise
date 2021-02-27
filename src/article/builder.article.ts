@@ -1,6 +1,6 @@
 import { v4 } from 'uuid';
 import { Article } from './class.article';
-
+//Article access option values.  
 export enum ArticleAccess {
     ALLOW_GUESTS,
     PAID_MEMBERS_ONLY,
@@ -8,15 +8,16 @@ export enum ArticleAccess {
     PAYMENT_REQUIRED
 }
 
-// builder
+// builder.  A builder pattern creates an object that you then set the types for.
+// In this ArticleBuilder, it sets the requirement for payment and member limitations.
 export class ArticleBuilder {
-
+    //Where the articles is stores.
     private article:Article;
-
+    //Uses reset() to set the default data for an article.
     constructor( private id?:string ){
         this.reset();
     }
-
+    //Sets the default for an article.  An author would change this to whatever they wanted for their articles.
     reset(){
         this.article = this.id && Article.load(this.id) || new Article({
             id: v4(),
@@ -28,28 +29,29 @@ export class ArticleBuilder {
             contents: []
         });
     }
-
-    requirePayment( isPaymentRequired:boolean = true ){
+    //Sets if a payment is required or not.
+    requirePayment( isPaymentRequired = true ){
         this.article.isPaymentRequired = isPaymentRequired;
     }
-
-    limitToMembers( isMemberOnly:boolean = true ){
+    //Sets if membership is required to view an article.
+    limitToMembers( isMemberOnly = true ){
         this.article.isMemberOnly = isMemberOnly;
     }
-    
+    //Shows the current article.
     getArticle(){
         return this.article;
     }
 
 }
 
-// director
+// director.  Director pattern creates option groups.  It works with a Builder pattern object to create the groups.
+// In this case, it simply sets the access options.
 export class ArticleDirector {
-
+    //Makes an ArticleBuilder() required to use the ArticleDirector.
     constructor( private builder:ArticleBuilder ){
 
     }
-
+    //Make an article a member/payment_required/paid_member article.
     make( type:ArticleAccess ){
         
         switch( type ){
@@ -60,7 +62,7 @@ export class ArticleDirector {
                 this.builder.limitToMembers();
                 break;
         }
-        
+        //Returns the builder, from which you can getArticle()
         return this.builder;
     }
 

@@ -21,7 +21,7 @@ describe("Users", () => {
 
         let id:string;
         
-        let newUser:Partial<IUser> = {
+        const newUser:Partial<IUser> = {
             email: faker.internet.email(),
             name: faker.name.findName(),
             username: faker.internet.userName(),
@@ -92,7 +92,7 @@ describe("Users", () => {
 
         let id:string;
         
-        let newUser:Partial<IUser> = {
+        const newUser:Partial<IUser> = {
             email: faker.internet.email(),
             name: faker.name.findName(),
             username: faker.internet.userName(),
@@ -158,14 +158,14 @@ describe("Users", () => {
 
         let loggedInUser:LoggedInUser;
         
-        let newUser:Partial<IUser> = {
+        const newUser:Partial<IUser> = {
             email: faker.internet.email(),
             name: faker.name.findName(),
             username: faker.internet.userName(),
             password: faker.internet.password()
         }
 
-        let newUser2:Partial<IUser> = {
+        const newUser2:Partial<IUser> = {
             email: faker.internet.email(),
             name: faker.name.findName(),
             username: faker.internet.userName(),
