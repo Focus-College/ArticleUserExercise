@@ -1,9 +1,13 @@
 import { User } from "./class.user";
 import { IUser } from "./interface.IUser";
 
+// ======== SINGLETON ======== \\
+
 export class LoggedInUser implements IUser {
 
+    // private instance ensures that only one LoggedInUser can exist at a time. 
     private static instance:LoggedInUser;
+    
     private user:User;
 
     get id(){

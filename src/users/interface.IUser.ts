@@ -1,3 +1,5 @@
+
+// This interface is used to define the minimum user data needed (excluding password and email)
 export interface IMinUserData {
 
     id: string;
@@ -8,6 +10,7 @@ export interface IMinUserData {
 
 }
 
+//this interface contains all the users properties
 export interface IUser extends IMinUserData {
 
     password: string;
