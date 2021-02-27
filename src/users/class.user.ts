@@ -43,7 +43,7 @@ export class User implements IUser {
         this._email = emailAddress;
 
     }
-    
+    //storing the users info in the user.json file
     private static store:IDataStore<IUser> = new JsonDataStore<IUser>(`users.json`);
 
     static load( id:string ): User | undefined {
@@ -60,7 +60,7 @@ export class User implements IUser {
         return new LoggedInUser( user );
 
     }
-    
+    //using a password then it gets hashed
     static hash( plainTextPassword:string ){
         return crypto.createHash("sha256").update(plainTextPassword).digest("hex");
     }
@@ -70,14 +70,14 @@ export class User implements IUser {
         Object.assign( this, data );
 
     }
-
+    //checks to make sure that password
     comparePassword( plainTextPassword:string ): boolean {
         
         const password = User.hash( plainTextPassword );
         return password === this.password;
 
     }
-
+    // to the like database your .json file once log in return this
     toJSON(): IUser {
         return {
             password: this.password,
@@ -87,6 +87,8 @@ export class User implements IUser {
             id: this.id
         };
     }
+
+
 
     save():void{
         

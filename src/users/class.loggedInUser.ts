@@ -3,6 +3,7 @@ import { IUser } from "./interface.IUser";
 
 export class LoggedInUser implements IUser {
 
+
     private static instance:LoggedInUser;
     private user:User;
 
@@ -25,7 +26,7 @@ export class LoggedInUser implements IUser {
     get name(){
         return this.user.name;
     }
-
+    //calling on a constructor for a user
     constructor( user?:User ){
 
         if( LoggedInUser.instance ){
