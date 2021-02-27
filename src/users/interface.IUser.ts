@@ -8,7 +8,7 @@ export interface IMinUserData {
 
 }
 
-export interface IUser extends IMinUserData {
+export interface IUser extends IMinUserData { //Iuser = interface + IminUser(interface) 
 
     password: string;
 
