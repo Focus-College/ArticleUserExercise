@@ -7,30 +7,42 @@ import { IStorableStatic } from '../dataStore/interface.IStorable';
 import { LoggedInUser } from './class.loggedInUser';
 import { IMinUserData, IUser } from './interface.IUser';
 
+// got as far as I could in the time given ( and from being late )
+
+
+// I would like to know more about staticImplements 
 @staticImplements<IStorableStatic<User>>()
 export class User implements IUser {
 
+    // the id of a user which will be a v4 string
     id: string;
 
+    // users username is a string
     username: string;
 
+    // non accessible but can be set on first compile.
     private _password: string = '';
 
+    
     get password(): string {
         return this._password;
     }
-
+    // a setter for setting the password of an account
     set password( plainTextPassword:string ){
-        
+        // password must have 8 miniumum required characters
         const validation = Joi.string().min(8).required();
         Joi.assert( plainTextPassword, validation );
+        // encrypts the password.
         this._password = crypto.createHash("sha256").update(plainTextPassword).digest("hex");
 
     }
-
+    // users real name is a string.
     name: string;
 
+    // Non accessible e-mail,
+    // by default is an empty string.
     private _email: string = '';
+
 
     get email():string{
         return this._email;
@@ -43,9 +55,10 @@ export class User implements IUser {
         this._email = emailAddress;
 
     }
-    
+    // Targeted file using IDataStore
     private static store:IDataStore<IUser> = new JsonDataStore<IUser>(`users.json`);
 
+    // method to load the data of a user as long as theyre an instance of this class.
     static load( id:string ): User | undefined {
         const data = User.store.get( id );
         return data && new User( data ) || undefined;
