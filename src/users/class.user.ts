@@ -1,3 +1,30 @@
+/*
+
+    user class 
+    --------------
+    @staticImplements<IStorableStatic<User>>()
+
+    export class User implements IUser 
+
+        get password(): string 
+        set password( plainTextPassword:string )
+        get email():string
+        set email( emailAddress:string )
+        private static store:IDataStore<IUser> 
+        static load( id:string )
+        static login( username:string, password:string )
+        static hash( plainTextPassword:string )
+        constructor( data:IMinUserData|IUser )
+        comparePassword( plainTextPassword:string ): boolean 
+        toJSON(): IUser 
+        save():void
+        delete():void
+
+*/
+
+
+// import crypto, Joi, staticImplements, JsonDataStore, IDataStore, 
+//        IStorableStatic, LoggedInUser, IMinUserData, IUser
 import crypto from 'crypto';
 import Joi from 'joi';
 import { staticImplements } from '../common/staticImplements';
